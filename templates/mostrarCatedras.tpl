@@ -4,8 +4,15 @@
     <div class="container">
       <ul class="list-group">
             {foreach from=$Catedras item=catedra}
-
-                <li class="list-group-item">{$catedra['nombre']} ----- {$catedra['link']} ----- {$catedra['id_carrera']}<a href="eliminarCatedra/{$catedra['id']}">BORRAR</a> | <a href="editarCatedra/{$catedra['id']}">EDITAR</a></li>
+              {if isset($catedra['descripcion'])}
+                <li class="list-group-item">CARRERA - {$catedra['id']} - {$catedra['nombre']} <a href="eliminarCatedra/{$catedra['id']}">BORRAR</a> | <a href="editarCatedra/{$catedra['id']}">EDITAR</a></li>
+              {else}
+                <li class="list-group-item">
+                  <ul class="list-group">
+                    <li class="list-group-item">CATEDRA - {$catedra['id']} - {$catedra['nombre']} <a href="eliminarCatedra/{$catedra['id']}">BORRAR</a> | <a href="editarCatedra/{$catedra['id']}">EDITAR</a></li>
+                  </ul>
+                </li>
+              {/if}
 
             {/foreach}
       </ul>

@@ -19,8 +19,17 @@ class CatedraController
   }
 
   function mostrar(){
-      $catedras = $this->model->get();
-      $this->view->mostrar($this->Titulo, $catedras);
+      //$catedras = $this->model->get();
+    $lista=[];
+    $carreras = $this->carreraModel->get();
+    for ($i=0; $i < count($carreras); $i++) { 
+      array_push($lista, $carreras[$i]);
+      $catedras = $this->model->getByCarrera($carreras[$i]['id']);
+      for ($j=0; $j < count($catedras); $j++) { 
+        array_push($lista, $catedras[$j]);        
+      }
+    }
+    $this->view->mostrar($this->Titulo, $lista);
   }
 
   function agregar(){
