@@ -36,8 +36,18 @@ class CarreraView
     $this->Smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
 
     //$smarty->debugging = true;
-    $this->Smarty->display('templates/afectadosCarrera.tpl');
+    $this->Smarty->display('templates/afectados.tpl');
   }
+
+  function borrarCarreraCompleta($metodo, $afectados){
+    $this->Smarty->assign('Titulo',$metodo); // El 'Titulo' del assign puede ser cualquier valor
+    $this->Smarty->assign('Car',$afectados);
+    $this->Smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+
+    //$smarty->debugging = true;
+    $this->Smarty->display('templates/borrarCarreraCompleta.tpl');
+  }
+  
 
 }
 

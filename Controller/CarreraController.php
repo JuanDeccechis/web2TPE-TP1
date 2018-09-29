@@ -30,7 +30,13 @@ class CarreraController
 
   function eliminar($param){
     $afectados = $this->model->eliminar($param[0]);
-    $this->view->resultado("eliminar", $afectados);
+    if ($afectados) {
+      $this->view->resultado("eliminar carrera", $afectados);
+    }else{
+      print("esta carrera tiene catedras dependiendo. ". "<br>");
+      print("Desea eliminar la carrera junto con todas sus catedras?. ". "<br>");
+      $this->view->borrarCarreraCompleta("eliminar carrera", $param[0]);
+    }
     //header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
   }
 

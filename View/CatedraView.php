@@ -10,6 +10,7 @@ class CatedraView
     $smarty = new Smarty();
     $smarty->assign('Titulo',$Titulo); // El 'Titulo' del assign puede ser cualquier valor
     $smarty->assign('Catedras',$catedras);
+    $smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
     //$smarty->debugging = true;
     $smarty->display('templates/mostrarCatedras.tpl');
   }
@@ -22,6 +23,16 @@ class CatedraView
 
     //$smarty->debugging = true;
     $smarty->display('templates/mostrarEditarCatedra.tpl');
+  }
+
+  function resultado($metodo, $afectados){
+    $smarty = new Smarty();
+    $smarty->assign('Titulo',$metodo); // El 'Titulo' del assign puede ser cualquier valor
+    $smarty->assign('Car',$afectados);
+    $smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras");
+
+    //$smarty->debugging = true;
+    $smarty->display('templates/afectados.tpl');
   }
 }
 
