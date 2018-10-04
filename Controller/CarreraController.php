@@ -16,7 +16,7 @@ class CarreraController
   }
 
   function home(){
-    $carreras = $this->model->get();
+    $carreras = $this->model->mostrar();
     $this->view->mostrar($this->Titulo, $carreras);
   }
 
@@ -42,7 +42,7 @@ class CarreraController
 
   function editar($param){
       $idCarrera = $param[0];
-      $carrera = $this->model->getOne($idCarrera);
+      $carrera = $this->model->mostrarUno($idCarrera);
       $this->view->mostrarOne($this->Titulo, $carrera);
   }
 

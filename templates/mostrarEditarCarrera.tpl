@@ -6,14 +6,14 @@
     <div class="container">
       <h2>Formulario</h2>
       <form method="post" action="{$home}/guardarEditar">
-        <input type="hidden" class="form-control" id="idForm" name="idForm" value="{$Car['id']}">
+        <input type="hidden" class="form-control" id="idForm" name="idForm" value="{$Elementos['id']}">
         <div class="form-group">
           <label for="tituloForm">Titulo</label>
-          <input type="text" class="form-control" id="nombreForm" name="nombreForm" value="{$Car['nombre']}">
+          <input type="text" class="form-control" id="nombreForm" name="nombreForm" value="{$Elementos['nombre']}">
         </div>
         <div class="form-group">
           <label for="descripcionForm">Descripcion</label>
-          <input type="text" class="form-control" id="descripcionForm" name="descripcionForm" value="{$Car['descripcion']}">
+          <input type="text" class="form-control" id="descripcionForm" name="descripcionForm" value="{$Elementos['descripcion']}">
         </div>
         
         <button type="submit" class="btn btn-primary">Editar Carrera</button>

@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 
     <h1>{$Titulo}</h1>
-    <h2>{$Car}</h2>
+    <h2>{$Elementos}</h2>
 
   <div>
       <h2>Formulario</h2>

@@ -4,7 +4,7 @@
 
     <div class="container">
       <ul class="list-group">
-            {foreach from=$Carreras item=carrera}
+            {foreach from=$Elementos item=carrera}
              <!--  {if $carrera['completada'] == 1}
                 <li class="list-group-item"><s>{$carrera['titulo']} - {$carrera['descripcion']}</s><a href="borrar/{$carrera['id']}">BORRAR</a></li>
               {else} -->

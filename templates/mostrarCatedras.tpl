@@ -3,9 +3,9 @@
     <h1>{$Titulo}</h1>
     <div class="container">
       <ul class="list-group">
-            {foreach from=$Catedras item=catedra}
+            {foreach from=$Elementos item=catedra}
               {if isset($catedra['descripcion'])}
-                <li class="list-group-item">CARRERA - {$catedra['id']} - {$catedra['nombre']} <a href="eliminarCatedra/{$catedra['id']}">BORRAR</a> | <a href="editarCatedra/{$catedra['id']}">EDITAR</a></li>
+                <li class="list-group-item">CARRERA - {$catedra['id']} - {$catedra['nombre']} </li>
               {else}
                 <li class="list-group-item">
                   <ul class="list-group">

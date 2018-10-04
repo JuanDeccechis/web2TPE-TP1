@@ -2,25 +2,31 @@
 /**
  *
  */
-class CatedraModel
-{
-  private $db;
+require_once "AbstractModel.php";
 
+class CatedraModel extends AbstractModel
+{
+  const INSTANCE = "catedra";
+  
   function __construct()
   {
     $this->db = $this->Connect();
   }
 
-  function Connect(){
-    return new PDO('mysql:host=localhost;'
-    .'dbname=db_web2_tp1;charset=utf8'
-    , 'root', '');
+  function mostrar(){
+      return $this->getAll(CatedraModel::INSTANCE);
   }
 
-  function get(){
-      $sentencia = $this->db->prepare( "select * from catedra");
-      $sentencia->execute();
-      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  function eliminar($id){
+    $afectados = $this->delete(CatedraModel::INSTANCE, $id);
+  }
+
+  function mostrarUno($id){
+    return $this->getOne(CatedraModel::INSTANCE, $id);
+  }
+
+  function mostrarPorCarrera($id_carrera){
+    return $this->getByIdCarrera(CatedraModel::INSTANCE, $id_carrera);
   }
 
   function agregar($nombre,$link, $cant_alumnos, $id_carrera){
@@ -29,18 +35,6 @@ class CatedraModel
     $resul = $sentencia->rowCount();
         printf("Registros agregados: %d\n", $resul);
     return $resul;
-  }
-
-  function eliminar($id){
-    $sentencia = $this->db->prepare( "delete from catedra where id=?");
-    $sentencia->execute(array($id));
-  }
-
-  function getOne($id){
-
-    $sentencia = $this->db->prepare( "select * from catedra where id=?");
-    $sentencia->execute(array($id));
-    return $sentencia->fetch(PDO::FETCH_ASSOC);
   }
 
   function guardarEditar($nombre,$link,$cant_alumnos,$id_carrera,$id){
@@ -53,12 +47,6 @@ class CatedraModel
       printf("No se editaron Registros: %d\n", $resul);
     }
     return $resul;
-  }
-
-  function getByCarrera($id_carrera){
-    $sentencia = $this->db->prepare( "select * from catedra where id_carrera=?");
-    $sentencia->execute(array($id_carrera));
-    return $sentencia->fetchAll(PDO::FETCH_ASSOC);  
   }
 
 }
