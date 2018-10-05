@@ -13,3 +13,4 @@
     <title>{$Titulo}</title>
   </head>
   <body>
+{include file="nav.tpl"}

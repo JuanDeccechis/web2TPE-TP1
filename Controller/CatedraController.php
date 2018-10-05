@@ -32,6 +32,12 @@ class CatedraController
     $this->view->mostrar($this->Titulo, $lista);
   }
 
+  function mostrarUna($param){
+    $id_carrera = $param[0];
+    $catedras = $this->model->mostrarPorCarrera($id_carrera);
+    $this->view->mostrar($this->Titulo, $catedras);
+  }
+
   function agregar(){
     $nombre = $_POST["nombreForm"];
     $link = $_POST["linkForm"];

@@ -15,7 +15,8 @@ class ConfigApp
       'eliminarCatedra'=> 'CatedraController#eliminar',
       'editarCatedra'=> 'CatedraController#editar',
       'guardarEditarCatedra'=> 'CatedraController#guardarEditar',
-      'borrarCarreraCompleta' => 'CatedraController#borrarCarreraCompleta'
+      'borrarCarreraCompleta' => 'CatedraController#borrarCarreraCompleta',
+      'mostrarUna' => 'CatedraController#mostrarUna'
     ];
 
 }

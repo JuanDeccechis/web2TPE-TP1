@@ -39,11 +39,11 @@
       </form>
     </div> 
 
-    <div>
+    <!-- <div>
       <h2>Formulario</h2>
         <form method="post" action="{$home}/">
           <button class="btn btn-primary">home</button>
         </form>
-    </div>
+    </div> -->
 
 {include file="footer.tpl"}

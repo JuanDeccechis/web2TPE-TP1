@@ -8,7 +8,7 @@
              <!--  {if $carrera['completada'] == 1}
                 <li class="list-group-item"><s>{$carrera['titulo']} - {$carrera['descripcion']}</s><a href="borrar/{$carrera['id']}">BORRAR</a></li>
               {else} -->
-                <li class="list-group-item">{$carrera['nombre']} ----- {$carrera['descripcion']}<a href="eliminar/{$carrera['id']}">ELIMINAR</a> | <a href="editar/{$carrera['id']}">EDITAR</a></li>
+                <li class="list-group-item">{$carrera['nombre']} ----- {$carrera['descripcion']}<a href="eliminar/{$carrera['id']}">ELIMINAR</a> | <a href="editar/{$carrera['id']}">EDITAR</a> | <a href="mostrarUna/{$carrera['id']}"> Ver catedras </a> </li>
               <!-- {/if} -->
             {/foreach}
       </ul>
@@ -29,10 +29,10 @@
       </form>
     </div> 
 
-    <div>
+<!--     <div>
       <h2>Formulario</h2>
         <form method="post" action="mostrarCatedras">
           <button class="btn btn-primary">mostrar catedras</button>
         </form>
-    </div>
+    </div> -->
 {include file="footer.tpl"}
