@@ -6,7 +6,10 @@ abstract class AbstractModel
 {
   protected $db;
 
- 
+  function __construct() {
+    $this->db = $this->Connect();
+  }
+
   function Connect(){
     return new PDO('mysql:host=localhost;'
     .'dbname=db_web2_tp1;charset=utf8'

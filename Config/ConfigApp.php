@@ -16,7 +16,9 @@ class ConfigApp
       'editarCatedra'=> 'CatedraController#editar',
       'guardarEditarCatedra'=> 'CatedraController#guardarEditar',
       'borrarCarreraCompleta' => 'CatedraController#borrarCarreraCompleta',
-      'mostrarUna' => 'CatedraController#mostrarUna'
+      'mostrarUna' => 'CatedraController#mostrarUna',
+      'login' => 'LoginController#login',
+      'verify' => 'LoginController#verify'
     ];
 
 }

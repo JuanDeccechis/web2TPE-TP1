@@ -4,6 +4,7 @@
 require_once "Config/ConfigApp.php";
 require_once "Controller\CarreraController.php";
 require_once "Controller\CatedraController.php";
+require_once "Controller/LoginController.php";
 
 function parseURL($url)
 {
