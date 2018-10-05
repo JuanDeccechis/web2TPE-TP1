@@ -18,7 +18,9 @@ class ConfigApp
       'borrarCarreraCompleta' => 'CatedraController#borrarCarreraCompleta',
       'mostrarUna' => 'CatedraController#mostrarUna',
       'login' => 'LoginController#login',
-      'verify' => 'LoginController#verify'
+      'verify' => 'LoginController#verify',
+      'signIn' => 'SignInController#signIn',
+      'newUser' => 'SignInController#agregar'
     ];
 
 }
