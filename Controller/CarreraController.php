@@ -1,8 +1,8 @@
 <?php
 require_once  "./View/CarreraView.php";
 require_once  "./Model/CarreraModel.php";
-
-class CarreraController
+require_once  "SecuredController.php";
+class CarreraController extends SecuredController
 {
   private $view;
   private $model;
@@ -10,6 +10,7 @@ class CarreraController
 
   function __construct()
   {
+    parent::__construct();
     $this->view = new CarreraView();
     $this->model = new CarreraModel();
     $this->Titulo = "Lista de carrera Controlador 1";

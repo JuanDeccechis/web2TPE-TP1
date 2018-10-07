@@ -9,6 +9,7 @@ abstract class AbstractView
     $smarty->assign('Table',$table);
     $smarty->assign('Elementos',$elementos);
     $smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    $smarty->assign('sesion_activa', isset($_SESSION["User"]));
     $smarty->display($template);
   }
 }

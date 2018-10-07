@@ -5,7 +5,10 @@ class CarreraView extends AbstractView
 {
 
   function mostrar($Titulo, $carreras){
-    $this->show($Titulo, 'carrera', $carreras, 'templates/home.tpl');
+    if(isset($_SESSION["User"]))
+      $this->show($Titulo, 'carrera', $carreras, 'templates/home_admin.tpl');
+    else
+      $this->show($Titulo, 'carrera', $carreras, 'templates/home.tpl');
   }
 
   function mostrarOne($Titulo, $carrera){

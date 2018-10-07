@@ -13,6 +13,7 @@
     		$this->Smarty->assign('Titulo',"Login");
     		$this->Smarty->assign('Mensaje', $mensaje);
     		$this->Smarty->assign('Accion',$Titulo); // Accion = Login
+    		$this->Smarty->assign('sesion_activa', isset($_SESSION["User"]));
     		$this->Smarty->display('templates/userForm.tpl');
   		}
 	}

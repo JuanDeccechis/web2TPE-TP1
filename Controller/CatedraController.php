@@ -2,8 +2,9 @@
 require_once  "./View/CatedraView.php";
 require_once  "./Model/CatedraModel.php";
 require_once  "./Model/CarreraModel.php";
+require_once  "SecuredController.php";
 
-class CatedraController
+class CatedraController extends SecuredController
 {
   private $view;
   private $model;
@@ -12,6 +13,7 @@ class CatedraController
 
   function __construct()
   {
+    parent::__construct();
     $this->view = new CatedraView();
     $this->model = new CatedraModel();
     $this->Titulo = "Lista de catedras";

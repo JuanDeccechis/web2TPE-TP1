@@ -20,7 +20,8 @@ class ConfigApp
       'login' => 'LoginController#login',
       'verify' => 'LoginController#verify',
       'signIn' => 'SignInController#signIn',
-      'newUser' => 'SignInController#agregar'
+      'newUser' => 'SignInController#agregar',
+      'logout' => 'LoginController#logout'
     ];
 
 }

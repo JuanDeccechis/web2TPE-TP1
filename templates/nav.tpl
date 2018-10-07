@@ -32,11 +32,17 @@
                   <a class="nav-link" href="https://www.exa.unicen.edu.ar/es/noticias" target="_blank">Noticias<span class="sr-only">(current)</span></a>
                 </li> -->
                 <li class="nav-item">
+                  {if $sesion_activa}
+                  <a class="nav-link" href="logout"> Logout <span class="sr-only">(current)</span></a>
+                  {else}
                   <a class="nav-link" href="login"> Login <span class="sr-only">(current)</span></a>
+                  {/if}
                 </li>
+                {if not $sesion_activa}
                 <li class="nav-item">
                   <a class="nav-link" href="signIn"> Registrarse <span class="sr-only">(current)</span></a>
                 </li>
+                {/if}
               </ul>
             </div>
           </nav>

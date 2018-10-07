@@ -33,5 +33,11 @@ require_once  "AbstractController.php";
         		$this->view->mostrar("Login", "No existe el usario");
       		}
 		}
+
+		function logout(){
+			session_start();
+			session_destroy();
+			header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+  		}
 	}
 ?>

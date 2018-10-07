@@ -5,7 +5,10 @@ class CatedraView extends AbstractView
 {
 
   function mostrar($Titulo, $catedras){
-    $this->show($Titulo, 'catedra', $catedras, 'templates/mostrarCatedras.tpl');
+  	if(isset($_SESSION["User"]))
+    	$this->show($Titulo, 'catedra', $catedras, 'templates/mostrarCatedras_admin.tpl');
+    else
+    	$this->show($Titulo, 'catedra', $catedras, 'templates/mostrarCatedras.tpl');
   }
 
   function mostrarOne($Titulo, $catedra){
