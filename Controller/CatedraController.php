@@ -20,7 +20,7 @@ class CatedraController extends SecuredController
     $this->carreraModel = new CarreraModel();
   }
 
-  function mostrar(){
+/*  function mostrar(){
       //$catedras = $this->model->get();
     $lista=[];
     $carreras = $this->carreraModel->mostrar();
@@ -32,12 +32,31 @@ class CatedraController extends SecuredController
       }
     }
     $this->view->mostrar($this->Titulo, $lista);
+  }*/
+
+  private function listaCarreras() { // retorna todas las carreras con sus catedras
+    $carreras = $this->carreraModel->mostrar();
+    for ($i=0; $i < count($carreras); $i++) {
+      $catedras = $this->model->mostrarPorCarrera($carreras[$i]['id']);
+      $carreras[$i]["catedras"] = $catedras;
+    }
+    return $carreras;
+  }
+
+  function mostrar(){
+    $id_catedra = func_num_args() > 0 ? func_get_arg(0)[1] : null;
+    $lista_carreras = $this->listaCarreras();
+    $this->view->mostrar($this->Titulo, $lista_carreras, 'carreras', 'mostrarCatedras', $id_catedra);
   }
 
   function mostrarUna($param){
     $id_carrera = $param[0];
+    $id_catedra = sizeof($param) > 1 ? $param[2] : null;
+    $carrera = $this->carreraModel->mostrarUno($id_carrera);
     $catedras = $this->model->mostrarPorCarrera($id_carrera);
-    $this->view->mostrar($this->Titulo, $catedras);
+    $carrera["catedras"] = $catedras;
+    $lista_carreras [0] = $carrera;
+    $this->view->mostrar($this->Titulo, $lista_carreras, 'catedras', 'mostrarUna/'.$id_carrera, $id_catedra);
   }
 
   function agregar(){
