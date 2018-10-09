@@ -62,7 +62,9 @@ class CatedraController extends SecuredController
   function agregar(){
     $nombre = $_POST["nombreForm"];
     $link = $_POST["linkForm"];
-    $id_carrera = $_POST["idCarreraForm"];
+    $nombre_carrera = $_POST["nombreCarreraForm"];
+    // $id_carrera = $_POST["idCarreraForm"];
+    $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
     $cant_alumnos = 1;
     $afectados = $this->model->agregar($nombre, $link, $cant_alumnos, $id_carrera);
     if ($afectados) {

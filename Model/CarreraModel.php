@@ -17,6 +17,16 @@ class CarreraModel extends AbstractModel
     return $this->getAll(CarreraModel::INSTANCE);
   }
 
+  function getBy($columna, $valor, $cantidad) {
+    $this->db->beginTransaction();
+    $sentencia = $this->db->prepare( "select * from carrera where $columna=? limit $cantidad");
+    $sentencia->execute(array($valor));
+    var_dump($sentencia);
+    $this->db->commit();
+    //$this->db->closeConnection();
+    return $sentencia->fetch(PDO::FETCH_ASSOC);  
+  }
+
   function mostrarUno($id){
     return $this->getOne(CarreraModel::INSTANCE, $id);
   }
