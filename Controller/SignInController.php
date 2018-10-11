@@ -10,14 +10,22 @@
 		}
 
 		function signIn() {
-			$this->view->mostrar('SignIn', 'newUser');
+			$this->view->mostrar('Registrarse', "", 'newUser');
 		}
 
 		function agregar() {
 			$nombre = $_POST["Usuario"];
     		$pass = $_POST["Password"];
-    		$this->model->agregar($nombre,$pass);
-			header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    		
+			$dbUser = $this->model->getUser($nombre);
+			if(isset($dbUser[0]))
+				$this->view->mostrar("Registrarse", "ya existe el usuario", 'newUser');
+      		else {
+        		//No existe el usario
+        		$this->model->agregar($nombre,$pass);
+        		header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+      		}
+
 		}
 	}
 ?>

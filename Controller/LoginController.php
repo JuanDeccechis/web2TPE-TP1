@@ -25,12 +25,12 @@ require_once  "AbstractController.php";
               		header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
           		}
           		else {
-		            $this->view->mostrar("Login", "Contraseña incorrecta");
+		            $this->view->mostrar("Login", "Contraseña incorrecta", 'verify');
 				}
       		}
       		else {
         		//No existe el usario
-        		$this->view->mostrar("Login", "No existe el usario");
+        		$this->view->mostrar("Login", "No existe el usario", 'verify');
       		}
 		}
 

@@ -14,7 +14,7 @@
 			  <input class="form-control" placeholder="Contraseña" type="password" name="Password" value="">
 			</div>
 			<h3>{$Mensaje}</h3>
-			<button type="submit" class="btn btn-primary"> {$Accion} </button>
+			<button type="submit" class="btn btn-primary"> {$Boton} </button>
 		  </form>
 	    </div>
       </div>
