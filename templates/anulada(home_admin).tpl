@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-    <h1>{$Titulo}</h1>
+    <h2>{$Titulo}</h2>
 
     <div class="container">
       <ul class="list-group">
@@ -8,7 +8,7 @@
              <!--  {if $carrera['completada'] == 1}
                 <li class="list-group-item"><s>{$carrera['titulo']} - {$carrera['descripcion']}</s><a href="borrar/{$carrera['id']}">BORRAR</a></li>
               {else} -->
-                <li class="list-group-item">{$carrera['nombre']} ----- {$carrera['descripcion']}<a href="eliminar/{$carrera['id']}">ELIMINAR</a> | <a href="editar/{$carrera['id']}">EDITAR</a> | <a href="mostrarUna/{$carrera['id']}"> Ver catedras </a> </li>
+                <li class="list-group-item filaCarrera">{$carrera['nombre']} ----- {$carrera['descripcion']}<a href="eliminar/{$carrera['id']}">ELIMINAR</a> | <a href="editar/{$carrera['id']}">EDITAR</a> | <a href="mostrarUna/{$carrera['id']}"> Ver catedras </a> </li>
               <!-- {/if} -->
             {/foreach}
       </ul>

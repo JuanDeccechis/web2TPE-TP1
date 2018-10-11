@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-    <h1>{$Titulo}</h1>
+    <h2>{$Titulo}</h2>
 
 
     <div class="container">

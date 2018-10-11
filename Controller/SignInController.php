@@ -10,7 +10,7 @@
 		}
 
 		function signIn() {
-			$this->view->mostrar('SignIn');
+			$this->view->mostrar('SignIn', 'newUser');
 		}
 
 		function agregar() {

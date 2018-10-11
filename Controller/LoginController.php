@@ -10,7 +10,7 @@ require_once  "AbstractController.php";
 		}
 
 		function login() {
-			$this->view->mostrar($this->Titulo, "");
+			$this->view->mostrar($this->Titulo, "", 'verify');
 		}
 
 		function verify(){

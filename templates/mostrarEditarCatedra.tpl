@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-    <h1>{$Titulo}</h1>
+    <h2>{$Titulo}</h2>
 
 
     <div class="container">
@@ -18,7 +18,17 @@
         <div class="form-group">
           <label for="id_carreraForm">id carrera</label>
           <input type="text" class="form-control" id="id_carreraForm" name="id_carreraForm" value="{$Elementos['id_carrera']}">
-        </div>
+        <!-- <div class="col-4">
+          <div class="form-group">
+            <label for="nombreCarreraForm">nombre carrera</label>
+            <select class="form-control" id="nombreCarreraForm" name="nombreCarreraForm">
+              {foreach from=$Elementos item=carrera}
+                <option>{$carrera['nombre']}</option>
+              {/foreach}
+            </select>
+          </div>
+        </div> -->
+    
         
         <button type="submit" class="btn btn-primary">Editar Catedra</button>
       </form>

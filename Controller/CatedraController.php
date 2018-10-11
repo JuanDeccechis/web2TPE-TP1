@@ -16,7 +16,7 @@ class CatedraController extends SecuredController
     parent::__construct();
     $this->view = new CatedraView();
     $this->model = new CatedraModel();
-    $this->Titulo = "Lista de catedras";
+    $this->Titulo = "Catedras";
     $this->carreraModel = new CarreraModel();
   }
 

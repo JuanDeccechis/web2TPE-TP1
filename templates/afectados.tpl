@@ -1,10 +1,10 @@
 {include file="header.tpl"}
 
-    <h1>{$Titulo}</h1>
-    <h2>{$Elementos}</h2>
+    <h2>{$Titulo}</h2>
+    <h4>{$Elementos}</h4>
 
   <div>
-      <h2>Formulario</h2>
+      <h4>Formulario</h4>
         <form method="post" action="{$home}">
           <button class="btn btn-primary">volver a Home</button>
         </form>

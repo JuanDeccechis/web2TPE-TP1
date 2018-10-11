@@ -13,7 +13,7 @@ class CarreraController extends SecuredController
     parent::__construct();
     $this->view = new CarreraView();
     $this->model = new CarreraModel();
-    $this->Titulo = "Lista de carrera Controlador 1";
+    $this->Titulo = "Carreras";
   }
 
   function home(){
