@@ -89,14 +89,18 @@ class CatedraController extends SecuredController
   function editar($param){
       $idCatedra = $param[0];
       $catedra = $this->model->mostrarUno($idCatedra);
-      $this->view->mostrarOne($this->Titulo, $catedra);
+      var_dump($catedra);
+      $lista_carreras = $this->listaCarreras();
+      $this->view->mostrarOne($this->Titulo, $catedra, $lista_carreras);
   }
 
   function guardarEditar(){
     $id_catedra = $_POST["idForm"];
     $nombre = $_POST["nombreForm"];
     $link = $_POST["linkForm"];
-    $id_carrera = $_POST["id_carreraForm"];
+    // $id_carrera = $_POST["id_carreraForm"];
+    $nombre_carrera = $_POST["nombreCarreraForm"];
+    $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
     $cant_alumnos = 2;
     $afectados = $this->model->guardarEditar($nombre,$link,$cant_alumnos,$id_carrera,$id_catedra);
     if ($afectados) {

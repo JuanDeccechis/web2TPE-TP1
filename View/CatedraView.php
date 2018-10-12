@@ -18,8 +18,15 @@ class CatedraView extends AbstractView
     	$smarty->display('templates/mostrarCatedras.tpl');
   }
 
-  function mostrarOne($Titulo, $catedra){
-    $this->show($Titulo, 'catedra', $catedra, 'templates/mostrarEditarCatedra.tpl');
+  function mostrarOne($Titulo, $catedra, $elementos){
+    // $this->show($Titulo, 'catedra', $catedra, 'templates/mostrarEditarCatedra.tpl');
+    $smarty = new Smarty();
+    $smarty->assign('Titulo',$Titulo);
+    $smarty->assign('Catedra',$catedra);
+    $smarty->assign('Elementos',$elementos);
+    $smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    $smarty->assign('sesion_activa', isset($_SESSION["User"]));
+    $smarty->display('templates/mostrarEditarCatedra.tpl');
   }
 
   function resultado($metodo, $afectados){
