@@ -7,12 +7,12 @@ require_once "AbstractModel.php";
 class CarreraModel extends AbstractModel
 {
   const INSTANCE = "carrera";
- 
+
   function __construct()
   {
     $this->db = $this->Connect();
   }
-  
+
   function mostrar(){
     return $this->getAll(CarreraModel::INSTANCE);
   }
@@ -21,10 +21,17 @@ class CarreraModel extends AbstractModel
     $this->db->beginTransaction();
     $sentencia = $this->db->prepare( "select * from carrera where $columna=? limit $cantidad");
     $sentencia->execute(array($valor));
-    var_dump($sentencia);
     $this->db->commit();
     //$this->db->closeConnection();
-    return $sentencia->fetch(PDO::FETCH_ASSOC);  
+    return $sentencia->fetch(PDO::FETCH_ASSOC);
+  }
+  function getNombres() { // Solo id y nombre de todas las carreras
+    $this->db->beginTransaction();
+    $sentencia = $this->db->prepare("select id, nombre from carrera");
+    $sentencia->execute();
+    $this->db->commit();
+    //$this->db->closeConnection();
+    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function mostrarUno($id){

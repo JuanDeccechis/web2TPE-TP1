@@ -1,16 +1,31 @@
 {include file="header.tpl"}
 
 <div class="container">
-  <h2>{$Titulo}</h2>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <h2>{$Titulo}</h2>
+            </div>
+            <div class="col-4">
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Buscar por carrera
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                      <li><a href="mostrarCatedras">Todas</a></li>
+                      {foreach from=$carreras item=carrera}
+                      <li><a href="mostrarUna/{$carrera['id']}">{$carrera['nombre']}</a></li>
+                      {/foreach}
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
   <table class="table">
     <thead>
       <th>Id</th>
       <th>Nombre</th>
       <th>Descripción</th>
       <th>VER</th>
-      <th>Nombre Carrera</th>
-      <th>Link</th>
-      <th>Cantidad de alumnos</th>
       {if $sesion_activa}
         <th>ELIMINAR</th>
         <th>EDITAR</th>
@@ -24,9 +39,6 @@
             <td> {$carrera['nombre']} </td>
             <td> {$carrera['descripcion']} </td>
             <td> --- </td>
-            <td> --- </td>
-            <td> --- </td>
-            <td> --- </td>
             {if $sesion_activa}
               <td> --- </td>
               <td> --- </td>
@@ -38,17 +50,7 @@
             <td> CATEDRA - {$catedra['id']} </td>
             <td> {$catedra['nombre']} </td>
             <td> --- </td>
-            {if $id_catedra_detalle !== $catedra['id']}
-              <td> <a href="{$home}/enDetalle/{$catedra['id']}"> Ver en detalle </a> </td>
-              <td> --- </td>
-              <td> --- </td>
-              <td> --- </td>
-            {else}
-              <td> --- </td>
-              <td> {$carrera['nombre']}</td>
-              <td> <a href="http://{$catedra['link']}"  target="_blank"> <img src="images/icon-link.png"  alt="Link"></a> </td>
-              <td> {$catedra['cant_alumnos']} </td>
-            {/if}
+            <td> <a href="enDetalle/{$catedra['id']}"> Ver en detalle </a> </td>
             {if $sesion_activa}
               <td> <a href="eliminarCatedra/{$catedra['id']}">ELIMINAR</a> </td>
               <td> <a href="editarCatedra/{$catedra['id']}">EDITAR</a></td>
@@ -73,15 +75,15 @@
                 {if $id_catedra_detalle !== $catedra['id']}
                   <a href="{$home}/enDetalle/{$catedra['id']}"> Ver en detalle </a>
                 {else}
-                  - {$carrera['nombre']} 
+                  - {$carrera['nombre']}
                   - Link: <a href="http://{$catedra['link']}"  target="_blank"> <img src="images/icon-link.png"  alt="Link"> </a>
                   - Cantidad de alumnos: {$catedra['cant_alumnos']}
                 {/if}
                 {if $sesion_activa}
-                  <a href="eliminarCatedra/{$catedra['id']}">ELIMINAR</a> | 
+                  <a href="eliminarCatedra/{$catedra['id']}">ELIMINAR</a> |
                   <a href="editarCatedra/{$catedra['id']}">EDITAR</a>
                 {/if}
-              </li>            
+              </li>
           {/foreach}
         </ul>
       {/if}

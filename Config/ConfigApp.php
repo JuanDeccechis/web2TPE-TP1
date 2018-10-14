@@ -21,7 +21,8 @@ class ConfigApp
       'verify' => 'LoginController#verify',
       'signIn' => 'SignInController#signIn',
       'newUser' => 'SignInController#agregar',
-      'logout' => 'LoginController#logout'
+      'logout' => 'LoginController#logout',
+      'enDetalle' => 'CatedraController#mostrarEnDetalle'
     ];
 
 }

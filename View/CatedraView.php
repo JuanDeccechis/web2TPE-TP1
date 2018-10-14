@@ -4,21 +4,17 @@ require_once "AbstractView.php";
 class CatedraView extends AbstractView
 {
 
-  function mostrar($Titulo, $catedras, $lista_de, $path, $id_catedra_detalle){
+  function mostrar($Titulo, $carreras, $catedras, $lista_de){
     $smarty = new Smarty();
     $smarty->assign('Titulo',$Titulo);
     $smarty->assign('Elementos',$catedras);
-    $smarty->assign('home', $path);
     $smarty->assign('sesion_activa', isset($_SESSION["User"]));
     $smarty->assign('lista_de', $lista_de);
-    $smarty->assign('id_catedra_detalle', $id_catedra_detalle);
-  	//if(isset($_SESSION["User"]))
-    //	$smarty->display('templates/mostrarCatedras_admin.tpl');
-    //else
-    	$smarty->display('templates/mostrarCatedras.tpl');
+    $smarty->assign('carreras', $carreras);
+    $smarty->display('templates/mostrarCatedras.tpl');
   }
 
-  function mostrarOne($Titulo, $catedra, $elementos){
+  function mostrarEditarCatedra($Titulo, $catedra, $elementos){
     // $this->show($Titulo, 'catedra', $catedra, 'templates/mostrarEditarCatedra.tpl');
     $smarty = new Smarty();
     $smarty->assign('Titulo',$Titulo);
@@ -32,9 +28,16 @@ class CatedraView extends AbstractView
   function resultado($metodo, $afectados){
     $this->show($metodo, 'catedra', $afectados, 'templates/afectados.tpl');
   }
+
+  function detalle($carrera, $catedra) {
+        $smarty = new Smarty();
+        $smarty->assign('Titulo', "Información detallada de catedra");
+        $smarty->assign('sesion_activa', isset($_SESSION["User"]));
+        $smarty->assign('carrera', $carrera);
+        $smarty->assign('catedra', $catedra);
+        $smarty->display('templates/catedraDetalle.tpl');
+  }
 }
 
 
  ?>
-
-
