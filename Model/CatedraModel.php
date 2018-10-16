@@ -6,14 +6,14 @@ require_once "AbstractModel.php";
 
 class CatedraModel extends AbstractModel
 {
-  const INSTANCE = "catedra";
-  
+    
   function __construct()
   {
-    $this->db = $this->Connect();
+    parent::__construct();
+    parent::setVar("catedra");
   }
 
-  function mostrar(){
+  /*function mostrar(){
       return $this->getAll(CatedraModel::INSTANCE);
   }
 
@@ -28,7 +28,7 @@ class CatedraModel extends AbstractModel
   function mostrarPorCarrera($id_carrera){
     return $this->getByIdCarrera(CatedraModel::INSTANCE, $id_carrera);
   }
-
+*/
   function agregar($nombre,$link, $cant_alumnos, $id_carrera){
     $sentencia = $this->db->prepare("INSERT INTO catedra(nombre, link, cant_alumnos, id_carrera) VALUES(?,?,?,?)");
     $sentencia->execute(array($nombre,$link, $cant_alumnos, $id_carrera));

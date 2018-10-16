@@ -24,7 +24,6 @@
     <thead>
       <th>Id</th>
       <th>Nombre</th>
-      <th>Descripción</th>
       <th>VER</th>
       {if $sesion_activa}
         <th>ELIMINAR</th>
@@ -34,7 +33,7 @@
     <tbody>
       {foreach from=$Elementos item=carrera}
         {if $lista_de == 'carreras'}
-          <tr class="filaCarrera">
+          <!-- <tr class="filaCarrera">
             <td> CARRERA - {$carrera['id']} </td>
             <td> {$carrera['nombre']} </td>
             <td> {$carrera['descripcion']} </td>
@@ -43,13 +42,12 @@
               <td> --- </td>
               <td> --- </td>
             {/if}
-          </tr>
+          </tr> -->
         {/if}
         {foreach from=$carrera['catedras'] item=catedra}
           <tr class="filaCatedra">
             <td> CATEDRA - {$catedra['id']} </td>
             <td> {$catedra['nombre']} </td>
-            <td> --- </td>
             <td> <a href="enDetalle/{$catedra['id']}"> Ver en detalle </a> </td>
             {if $sesion_activa}
               <td> <a href="eliminarCatedra/{$catedra['id']}">ELIMINAR</a> </td>
