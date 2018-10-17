@@ -2,6 +2,8 @@
 /**
  * 
  */
+
+define('HOME', 'Location: //'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
 abstract class AbstractController {
 
 	protected $view;

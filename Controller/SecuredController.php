@@ -1,5 +1,6 @@
 <?php
 
+require_once  "AbstractController.php";
   class SecuredController {
 
     function __construct() {
@@ -14,7 +15,7 @@
 
     function logout(){
       session_destroy();
-      header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+      header(HOME);
     }
   }
 ?>

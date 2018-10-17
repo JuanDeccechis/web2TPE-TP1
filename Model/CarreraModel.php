@@ -23,7 +23,6 @@ class CarreraModel extends AbstractModel
 */
   function eliminar($id){
     $afectados = parent::eliminar($id);
-    printf("Registros borrados: %d\n", $afectados);
     return $afectados;
   }
 

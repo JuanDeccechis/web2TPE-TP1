@@ -68,7 +68,7 @@ class CatedraController extends SecuredController
     $cant_alumnos = 1;
     $afectados = $this->model->agregar($nombre, $link, $cant_alumnos, $id_carrera);
     if ($afectados) {
-     header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras"); 
+     header(HOME."/mostrarCatedras"); 
     }else{
       $resul = "";
       $carreras = $this->carreraModel->mostrar();
@@ -83,7 +83,7 @@ class CatedraController extends SecuredController
 
   function eliminar($param){
     $this->model->eliminar($param[0]);
-    header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras");
+    header(HOME."/mostrarCatedras");
   }
 
   function editar($param){
@@ -103,7 +103,7 @@ class CatedraController extends SecuredController
     $cant_alumnos = 2;
     $afectados = $this->model->guardarEditar($nombre,$link,$cant_alumnos,$id_carrera,$id_catedra);
     if ($afectados) {
-      header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras");
+      header(HOME."/mostrarCatedras");
     }else{
       $resul = "";
       $carreras = $this->carreraModel->mostrar();
@@ -124,7 +124,7 @@ class CatedraController extends SecuredController
       $this->model->eliminar($catedras[$i]['id']);
     }
     $this->carreraModel->eliminar($id_carrera);
-    header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    header(HOME);
     
   }
 }

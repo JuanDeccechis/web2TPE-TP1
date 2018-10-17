@@ -22,38 +22,48 @@ class CarreraController extends SecuredController
   }
 
   function agregar(){
-    $nombre = $_POST["nombreForm"];
-    $descripcion = $_POST["descripcionForm"];
-    $this->model->agregar($nombre,$descripcion);
-
-    header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    if (isset($_SESSION["User"])) {
+      $nombre = $_POST["nombreForm"];
+      $descripcion = $_POST["descripcionForm"];
+      $this->model->agregar($nombre,$descripcion);
+      header(HOME);
+    }
+    else
+      header(HOME."/login");
   }
 
   function eliminar($param){
-    $afectados = $this->model->eliminar($param[0]);
-    if ($afectados) {
-      $this->view->resultado("eliminar carrera", $afectados);
-    }else{
-      print("esta carrera tiene catedras dependiendo. ". "<br>");
-      print("Desea eliminar la carrera junto con todas sus catedras?. ". "<br>");
-      $this->view->borrarCarreraCompleta("eliminar carrera", $param[0]);
+    if (isset($_SESSION["User"])) {
+      $afectados = $this->model->eliminar($param[0]);
+      if ($afectados)
+        $this->view->resultado("eliminar carrera", $afectados);
+      else
+        $this->view->borrarCarreraCompleta("eliminar carrera", $param[0]);
     }
-    //header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    else
+      header(HOME."/login");
   }
 
   function editar($param){
+    if (isset($_SESSION["User"])) {
       $idCarrera = $param[0];
       $carrera = $this->model->mostrarUno($idCarrera);
       $this->view->mostrarOne($this->Titulo, $carrera);
+    }
+    else
+      header(HOME."/login");
   }
 
   function guardarEditar(){
-    $id_carrera = $_POST["idForm"];
-    $nombre = $_POST["nombreForm"];
-    $descripcion = $_POST["descripcionForm"];
-    $this->model->guardarEditar($nombre,$descripcion,$id_carrera);
-
-    header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    if (isset($_SESSION["User"])) {
+      $id_carrera = $_POST["idForm"];
+      $nombre = $_POST["nombreForm"];
+      $descripcion = $_POST["descripcionForm"];
+      $this->model->guardarEditar($nombre,$descripcion,$id_carrera);
+      header(HOME);
+    }
+    else
+      header(HOME."/login");
   }
 }
 

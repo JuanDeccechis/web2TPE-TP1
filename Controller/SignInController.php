@@ -23,7 +23,7 @@
       		else {
         		//No existe el usario
         		$this->model->agregar($nombre,$pass);
-        		header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+        		header(HOME);
       		}
 
 		}

@@ -64,72 +64,92 @@ class CatedraController extends SecuredController
   }
 
   function agregar(){
-    $nombre = $_POST["nombreForm"];
-    $link = $_POST["linkForm"];
-    $nombre_carrera = $_POST["nombreCarreraForm"];
-    // $id_carrera = $_POST["idCarreraForm"];
-    $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
-    $cant_alumnos = 1;
-    $afectados = $this->model->agregar($nombre, $link, $cant_alumnos, $id_carrera);
-    if ($afectados) {
-     header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras");
-    }else{
-      $resul = "";
-      $carreras = $this->carreraModel->mostrar();
-      print("los posibles id de carrera son: ". "<br>");
-      for ($i=0; $i < count($carreras); $i++) {
-        printf($carreras[$i]['id'] . " - " .$carreras[$i]['nombre']. "<br>");
+    if (isset($_SESSION["User"])) {
+      $nombre = $_POST["nombreForm"];
+      $link = $_POST["linkForm"];
+      $nombre_carrera = $_POST["nombreCarreraForm"];
+      // $id_carrera = $_POST["idCarreraForm"];
+      $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
+      $cant_alumnos = 1;
+      $afectados = $this->model->agregar($nombre, $link, $cant_alumnos, $id_carrera);
+      if ($afectados) {
+       header(HOME."/mostrarCatedras");
+      }else{
+        $resul = "";
+        $carreras = $this->carreraModel->mostrar();
+        print("Las posibles carreras son: ". "<br>");
+        for ($i=0; $i < count($carreras); $i++) {
+          printf($carreras[$i]['id'] . " - " .$carreras[$i]['nombre']. "<br>");
+        }
+        $this->view->resultado("agregar catedra", $afectados);
       }
-      $this->view->resultado("agregar catedra", $afectados);
     }
-    //header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras");
+    else
+      //$this->view->mostrar($this->Titulo, $this->carreraModel->getNombres(), $this->listaCarreras(), 'carreras');
+      header(HOME."/login");
   }
 
   function eliminar($param){
-    $this->model->eliminar($param[0]);
-    header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras");
+    if (isset($_SESSION["User"])) {
+      $this->model->eliminar($param[0]);
+      header(HOME."/mostrarCatedras");
+    }
+    else
+      //$this->view->mostrar($this->Titulo, $this->carreraModel->getNombres(), $this->listaCarreras(), 'carreras');
+      header(HOME."/login");
   }
 
   function editar($param){
+    if (isset($_SESSION["User"])) {
       $idCatedra = $param[0];
       $catedra = $this->model->mostrarUno($idCatedra);
       $lista_carreras = $this->listaCarreras();
       $this->view->mostrarEditarCatedra($this->Titulo, $catedra, $lista_carreras);
+    }
+    else
+      //$this->view->mostrar($this->Titulo, $this->carreraModel->getNombres(), $this->listaCarreras(), 'carreras');
+      header(HOME."/login");
   }
 
   function guardarEditar(){
-    $id_catedra = $_POST["idForm"];
-    $nombre = $_POST["nombreForm"];
-    $link = $_POST["linkForm"];
-    // $id_carrera = $_POST["id_carreraForm"];
-    $nombre_carrera = $_POST["nombreCarreraForm"];
-    $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
-    $cant_alumnos = 2;
-    $afectados = $this->model->guardarEditar($nombre,$link,$cant_alumnos,$id_carrera,$id_catedra);
-    if ($afectados) {
-      header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras");
-    }else{
-      $resul = "";
-      $carreras = $this->carreraModel->mostrar();
-      print("los posibles id de carrera son: ". "<br>");
-      for ($i=0; $i < count($carreras); $i++) {
-        printf($carreras[$i]['id'] . " - " .$carreras[$i]['nombre']. "<br>");
-      }
-      $this->view->resultado("editar catedra", $afectados);
+    if (isset($_SESSION["User"])) {
+      $id_catedra = $_POST["idForm"];
+      $nombre = $_POST["nombreForm"];
+      $link = $_POST["linkForm"];
+      // $id_carrera = $_POST["id_carreraForm"];
+      $nombre_carrera = $_POST["nombreCarreraForm"];
+      $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
+      $cant_alumnos = 2;
+      $afectados = $this->model->guardarEditar($nombre,$link,$cant_alumnos,$id_carrera,$id_catedra);
+      if ($afectados) {
+        header(HOME."/mostrarCatedras");
+      }else{
+        $resul = "";
+        $carreras = $this->carreraModel->mostrar();
+        print("Las posibles carreras son: ". "<br>");
+        for ($i=0; $i < count($carreras); $i++) {
+          printf($carreras[$i]['id'] . " - " .$carreras[$i]['nombre']. "<br>");
+        }
+        $this->view->resultado("editar catedra", $afectados);
+      } 
     }
-    //header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"])."/mostrarCatedras");
+    else
+      header(HOME."/login");
   }
 
   function borrarCarreraCompleta($param){
-    $id_carrera = $param[0];
-    $catedras = $this->model->mostrarPorCarrera($id_carrera);
-    print(count($catedras));
-    for ($i=0; $i < count($catedras); $i++) {
-      $this->model->eliminar($catedras[$i]['id']);
+    if (isset($_SESSION["User"])) {
+      $id_carrera = $param[0];
+      $catedras = $this->model->mostrarPorCarrera($id_carrera);
+      for ($i=0; $i < count($catedras); $i++) {
+        $this->model->eliminar($catedras[$i]['id']);
+      }
+      $this->carreraModel->eliminar($id_carrera);
+      header(HOME);
     }
-    $this->carreraModel->eliminar($id_carrera);
-    header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
-
+    else
+      //$this->view->mostrar($this->Titulo, $this->carreraModel->getNombres(), $this->listaCarreras(), 'carreras');
+      header(HOME."/login");
   }
 }
 

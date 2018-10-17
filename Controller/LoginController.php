@@ -22,7 +22,7 @@ require_once  "AbstractController.php";
 				if (password_verify($pass, $dbUser[0]["pass"])){
 					session_start();
               		$_SESSION["User"] = $user;
-              		header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+              		header(HOME);
           		}
           		else {
 		            $this->view->mostrar("Login", "Contraseña incorrecta", 'verify');
@@ -37,7 +37,7 @@ require_once  "AbstractController.php";
 		function logout(){
 			session_start();
 			session_destroy();
-			header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+			header(HOME);
   		}
 	}
 ?>
