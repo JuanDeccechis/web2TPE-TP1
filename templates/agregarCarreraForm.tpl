@@ -12,6 +12,7 @@
             <label for="descripcionForm">Descripcion</label>
             <input type="text" class="form-control" id="descripcionForm" name="descripcionForm" >
           </div>
+          <h3>{$Mensaje}</h3>
           <button type="submit" class="btn btn-primary">Crear Carrera</button>
         </form>
       </div> 

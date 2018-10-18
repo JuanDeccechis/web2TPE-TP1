@@ -29,18 +29,6 @@
     </tbody>
   </table>
 
-<!--      <ul class="list-group">
-        {foreach from=$Elementos item=carrera}
-            <li class="list-group-item filaCarrera">{$carrera['nombre']} ----- {$carrera['descripcion']}
-              | <a href="mostrarUna/{$carrera['id']}"> Ver catedras </a>
-              {if $sesion_activa}
-                | <a href="eliminar/{$carrera['id']}">ELIMINAR</a> 
-                | <a href="editar/{$carrera['id']}">EDITAR</a>
-              {/if}
-            </li>
-        {/foreach}
-  </ul> -->
-
 </div>
 
   {if $sesion_activa}

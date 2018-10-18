@@ -2,15 +2,15 @@
 /**
  * 
  */
-
-define('HOME', 'Location: //'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
-abstract class AbstractController {
+require_once  "SecuredController.php";
+ class AbstractController extends SecuredController{
 
 	protected $view;
 	protected $model;
 	protected $Titulo;
 
 	function __construct($view, $model, $Titulo) {
+		parent::__construct();
 		$this->view = $view;
     	$this->model = $model;
     	$this->Titulo = $Titulo;

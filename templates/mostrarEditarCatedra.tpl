@@ -15,12 +15,7 @@
           <label for="linkForm">Link</label>
           <input type="text" class="form-control" id="linkForm" name="linkForm" value="{$Catedra['link']}">
         </div>
-<!--         <div class="form-group">
-          <label for="id_carreraForm">id carrera</label>
-          <input type="text" class="form-control" id="id_carreraForm" name="id_carreraForm" value="{$Catedra['id_carrera']}">
-        </div>  -->
-        <!-- <div class="col-4"> -->
-          <div class="form-group">
+        <div class="form-group">
             <label for="nombreCarreraForm">nombre carrera</label>
             <select class="form-control" id="nombreCarreraForm" name="nombreCarreraForm">
               {foreach from=$Elementos item=carrera}

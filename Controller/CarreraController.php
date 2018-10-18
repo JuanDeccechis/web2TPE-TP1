@@ -1,32 +1,31 @@
 <?php
 require_once  "./View/CarreraView.php";
 require_once  "./Model/CarreraModel.php";
-require_once  "SecuredController.php";
-class CarreraController extends SecuredController
+require_once  "AbstractController.php";
+class CarreraController extends AbstractController
 {
-  private $view;
-  private $model;
-  private $Titulo;
-
-  function __construct()
-  {
-    parent::__construct();
-    $this->view = new CarreraView();
-    $this->model = new CarreraModel();
-    $this->Titulo = "Carreras";
+ 
+  function __construct(){
+    parent::__construct(new CarreraView(), new CarreraModel(), "Carreras");
   }
 
   function home(){
     $carreras = $this->model->mostrar();
-    $this->view->mostrar($this->Titulo, $carreras);
+    $this->view->mostrar($this->Titulo, "", $carreras);
   }
 
   function agregar(){
     if (isset($_SESSION["User"])) {
-      $nombre = $_POST["nombreForm"];
-      $descripcion = $_POST["descripcionForm"];
-      $this->model->agregar($nombre,$descripcion);
-      header(HOME);
+      if (((isset($_POST["nombreForm"])) && ($_POST["nombreForm"] != null)) && ((isset($_POST["descripcionForm"])) && ($_POST["descripcionForm"] != null))) {
+        $nombre = $_POST["nombreForm"];
+        $descripcion = $_POST["descripcionForm"];
+        $this->model->agregar($nombre,$descripcion);
+        header(HOME);
+      }
+      else{
+        $carreras = $this->model->mostrar();
+        $this->view->mostrar($this->Titulo, "Debe completar los campos", $carreras);
+      }
     }
     else
       header(HOME."/login");
@@ -36,7 +35,7 @@ class CarreraController extends SecuredController
     if (isset($_SESSION["User"])) {
       $afectados = $this->model->eliminar($param[0]);
       if ($afectados)
-        $this->view->resultado("eliminar carrera", $afectados);
+        header(HOME);
       else
         $this->view->borrarCarreraCompleta("eliminar carrera", $param[0]);
     }
@@ -56,11 +55,15 @@ class CarreraController extends SecuredController
 
   function guardarEditar(){
     if (isset($_SESSION["User"])) {
-      $id_carrera = $_POST["idForm"];
-      $nombre = $_POST["nombreForm"];
-      $descripcion = $_POST["descripcionForm"];
-      $this->model->guardarEditar($nombre,$descripcion,$id_carrera);
-      header(HOME);
+      if (((isset($_POST["idForm"])) && ($_POST["idForm"] != null)) && ((isset($_POST["nombreForm"])) && ($_POST["nombreForm"] != null)) && ((isset($_POST["descripcionForm"])) && ($_POST["descripcionForm"] != null))) {
+        $id_carrera = $_POST["idForm"];
+        $nombre = $_POST["nombreForm"];
+        $descripcion = $_POST["descripcionForm"];
+        $this->model->guardarEditar($nombre,$descripcion,$id_carrera);
+        header(HOME);
+      }
+      else
+        header(HOME);
     }
     else
       header(HOME."/login");

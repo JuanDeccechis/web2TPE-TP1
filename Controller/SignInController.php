@@ -14,18 +14,21 @@
 		}
 
 		function agregar() {
-			$nombre = $_POST["Usuario"];
-    		$pass = $_POST["Password"];
-    		
-			$dbUser = $this->model->getUser($nombre);
-			if(isset($dbUser[0]))
-				$this->view->mostrar("Registrarse", "ya existe el usuario", 'newUser');
-      		else {
-        		//No existe el usario
-        		$this->model->agregar($nombre,$pass);
-        		header(HOME);
-      		}
-
+			if (((isset($_POST["Usuario"])) && ($_POST["Usuario"] != null)) && ((isset($_POST["Password"])) && ($_POST["Password"] != null))) {
+				$nombre = $_POST["Usuario"];
+	    		$pass = $_POST["Password"];
+	    		
+				$dbUser = $this->model->getUser($nombre);
+				if(isset($dbUser[0]))
+					$this->view->mostrar("Registrarse", "ya existe el usuario", 'newUser');
+	      		else {
+	        		//No existe el usario
+	        		$this->model->agregar($nombre,$pass);
+	        		header(HOME);
+	      		}
+	      	}
+	      	else
+	      		$this->view->mostrar('Registrarse', "Debe completar los campos", 'newUser');
 		}
 	}
 ?>

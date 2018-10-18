@@ -33,7 +33,6 @@ class CatedraModel extends AbstractModel
     $sentencia = $this->db->prepare("INSERT INTO catedra(nombre, link, cant_alumnos, id_carrera) VALUES(?,?,?,?)");
     $sentencia->execute(array($nombre,$link, $cant_alumnos, $id_carrera));
     $resul = $sentencia->rowCount();
-    /*    printf("Registros agregados: %d\n", $resul);*/
     return $resul;
   }
 
@@ -41,11 +40,6 @@ class CatedraModel extends AbstractModel
     $sentencia = $this->db->prepare( "update catedra set nombre = ?, link = ?, cant_alumnos = ?, id_carrera = ? where id=?");
     $sentencia->execute(array($nombre,$link, $cant_alumnos, $id_carrera, $id));
     $resul = $sentencia->rowCount();
-    /*if ($resul) {
-      printf("Registros editados: %d\n", $resul);
-    }else{
-      printf("No se editaron Registros: %d\n", $resul);
-    }*/
     return $resul;
   }
 

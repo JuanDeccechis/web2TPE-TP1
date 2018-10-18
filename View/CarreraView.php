@@ -4,11 +4,11 @@ require_once "AbstractView.php";
 class CarreraView extends AbstractView
 {
 
-  function mostrar($Titulo, $carreras){
+  function mostrar($Titulo, $mensaje, $carreras){
 /*    if(isset($_SESSION["User"]))
       $this->show($Titulo, 'carrera', $carreras, 'templates/home_admin.tpl');
     else*/
-      $this->show($Titulo, 'carrera', $carreras, 'templates/home.tpl');
+      $this->show($Titulo, 'carrera', $carreras, 'templates/home.tpl', $mensaje);
   }
 
   function mostrarOne($Titulo, $carrera){

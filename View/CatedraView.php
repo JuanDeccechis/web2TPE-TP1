@@ -4,13 +4,14 @@ require_once "AbstractView.php";
 class CatedraView extends AbstractView
 {
 
-  function mostrar($Titulo, $carreras, $catedras, $lista_de){
+  function mostrar($Titulo, $carreras, $catedras, $lista_de, $mensaje=''){
     $smarty = new Smarty();
     $smarty->assign('Titulo',$Titulo);
     $smarty->assign('Elementos',$catedras);
     $smarty->assign('sesion_activa', isset($_SESSION["User"]));
     $smarty->assign('lista_de', $lista_de);
     $smarty->assign('carreras', $carreras);
+    $smarty->assign('Mensaje', $mensaje);
     $smarty->display('templates/mostrarCatedras.tpl');
   }
 

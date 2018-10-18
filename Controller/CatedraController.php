@@ -2,37 +2,17 @@
 require_once  "./View/CatedraView.php";
 require_once  "./Model/CatedraModel.php";
 require_once  "./Model/CarreraModel.php";
-require_once  "SecuredController.php";
+require_once  "AbstractController.php";
 
-class CatedraController extends SecuredController
+class CatedraController extends AbstractController
 {
-  private $view;
-  private $model;
-  private $Titulo;
   private $carreraModel;
 
   function __construct()
   {
-    parent::__construct();
-    $this->view = new CatedraView();
-    $this->model = new CatedraModel();
-    $this->Titulo = "Catedras";
+    parent::__construct(new CatedraView(), new CatedraModel(), "Catedras");
     $this->carreraModel = new CarreraModel();
   }
-
-/*  function mostrar(){
-      //$catedras = $this->model->get();
-    $lista=[];
-    $carreras = $this->carreraModel->mostrar();
-    for ($i=0; $i < count($carreras); $i++) {
-      array_push($lista, $carreras[$i]);
-      $catedras = $this->model->mostrarPorCarrera($carreras[$i]['id']);
-      for ($j=0; $j < count($catedras); $j++) {
-        array_push($lista, $catedras[$j]);
-      }
-    }
-    $this->view->mostrar($this->Titulo, $lista);
-  }*/
 
   private function listaCarreras() { // retorna todas las carreras con sus catedras
     $carreras = $this->carreraModel->mostrar();
@@ -65,24 +45,25 @@ class CatedraController extends SecuredController
 
   function agregar(){
     if (isset($_SESSION["User"])) {
-      $nombre = $_POST["nombreForm"];
-      $link = $_POST["linkForm"];
-      $nombre_carrera = $_POST["nombreCarreraForm"];
-      // $id_carrera = $_POST["idCarreraForm"];
-      $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
-      $cant_alumnos = 1;
-      $afectados = $this->model->agregar($nombre, $link, $cant_alumnos, $id_carrera);
-      if ($afectados) {
-       header(HOME."/mostrarCatedras");
-      }else{
-        $resul = "";
-        $carreras = $this->carreraModel->mostrar();
-        print("Las posibles carreras son: ". "<br>");
-        for ($i=0; $i < count($carreras); $i++) {
-          printf($carreras[$i]['id'] . " - " .$carreras[$i]['nombre']. "<br>");
+      if (((isset($_POST["nombreForm"])) && ($_POST["nombreForm"] != null)) && ((isset($_POST["linkForm"])) && ($_POST["linkForm"] != null)) && ((isset($_POST["nombreCarreraForm"])) && ($_POST["nombreCarreraForm"] != null))) {  
+        $nombre = $_POST["nombreForm"];
+        $link = $_POST["linkForm"];
+        $nombre_carrera = $_POST["nombreCarreraForm"];
+        $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
+        $cant_alumnos = 1;
+        $afectados = $this->model->agregar($nombre, $link, $cant_alumnos, $id_carrera);
+        if ($afectados) {
+          header(HOME."/mostrarCatedras");
+        }else{
+          $resul = "";
+          $this->view->resultado("agregar catedra", $afectados);
         }
-        $this->view->resultado("agregar catedra", $afectados);
       }
+      else{
+        $catedras = $this->model->mostrar();
+        $this->view->mostrar($this->Titulo, $this->carreraModel->getNombres(), $this->listaCarreras(), 'carreras', "Debe completar los campos");
+      }
+
     }
     else
       //$this->view->mostrar($this->Titulo, $this->carreraModel->getNombres(), $this->listaCarreras(), 'carreras');
@@ -113,25 +94,24 @@ class CatedraController extends SecuredController
 
   function guardarEditar(){
     if (isset($_SESSION["User"])) {
-      $id_catedra = $_POST["idForm"];
-      $nombre = $_POST["nombreForm"];
-      $link = $_POST["linkForm"];
-      // $id_carrera = $_POST["id_carreraForm"];
-      $nombre_carrera = $_POST["nombreCarreraForm"];
-      $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
-      $cant_alumnos = 2;
-      $afectados = $this->model->guardarEditar($nombre,$link,$cant_alumnos,$id_carrera,$id_catedra);
-      if ($afectados) {
+      if (((isset($_POST["idForm"])) && ($_POST["idForm"] != null)) && ((isset($_POST["nombreForm"])) && ($_POST["nombreForm"] != null)) && ((isset($_POST["nombreCarreraForm"])) && ($_POST["nombreCarreraForm"] != null)) && ((isset($_POST["linkForm"])) && ($_POST["linkForm"] != null))) {
+        $id_catedra = $_POST["idForm"];
+        $nombre = $_POST["nombreForm"];
+        $link = $_POST["linkForm"];
+        // $id_carrera = $_POST["id_carreraForm"];
+        $nombre_carrera = $_POST["nombreCarreraForm"];
+        $id_carrera = $this->carreraModel->getBy('nombre', $nombre_carrera, 1)['id'];
+        $cant_alumnos = 2;
+        $afectados = $this->model->guardarEditar($nombre,$link,$cant_alumnos,$id_carrera,$id_catedra);
+        if ($afectados) {
+          header(HOME."/mostrarCatedras");
+        }else{
+          $resul = "";
+          $this->view->resultado("editar catedra", $afectados);
+        } 
+      }
+      else
         header(HOME."/mostrarCatedras");
-      }else{
-        $resul = "";
-        $carreras = $this->carreraModel->mostrar();
-        print("Las posibles carreras son: ". "<br>");
-        for ($i=0; $i < count($carreras); $i++) {
-          printf($carreras[$i]['id'] . " - " .$carreras[$i]['nombre']. "<br>");
-        }
-        $this->view->resultado("editar catedra", $afectados);
-      } 
     }
     else
       header(HOME."/login");

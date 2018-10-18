@@ -13,10 +13,6 @@
             <input type="text" class="form-control" id="linkForm" name="linkForm" >
           </div>
 
-          <!-- <div class="form-group">
-            <label for="idCarreraForm">idCarrera</label>
-            <input type="text" class="form-control" id="idCarreraForm" name="idCarreraForm" >
-          </div> -->
           <div class="container-fluid">
             <div class="row">
               <div class="col-4">
@@ -29,6 +25,7 @@
                   </select>
                 </div>
               </div>
+              <h3>{$Mensaje}</h3>
               <div class="col-4">
                 <button type="submit" class="btn btn-primary">Crear Catedra</button>
               </div>
