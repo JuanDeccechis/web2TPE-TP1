@@ -14,14 +14,14 @@
   </thead>
   <tbody>
         <tr class="filaCatedra">
-          <td> CATEDRA - {$catedra['id']} </td>
-          <td> {$catedra['nombre']} </td>
-          <td> {$carrera['nombre']}</td>
-          <td> <a href="http://{$catedra['link']}"  target="_blank"> <img src="images/icon-link.png"  alt="Link"></a> </td>
-          <td> {$catedra['cant_alumnos']} </td>
+          <td> CATEDRA - {$Elementos['id']} </td>
+          <td> {$Elementos['nombre']} </td>
+          <td> {$carreras['nombre']}</td>
+          <td> <a href="http://{$Elementos['link']}"  target="_blank"> <img src="images/icon-link.png"  alt="Link"></a> </td>
+          <td> {$Elementos['cant_alumnos']} </td>
           {if $sesion_activa}
-            <td> <a href="eliminarCatedra/{$catedra['id']}">ELIMINAR</a> </td>
-            <td> <a href="editarCatedra/{$catedra['id']}">EDITAR</a></td>
+            <td> <a href="eliminarCatedra/{$Elementos['id']}">ELIMINAR</a> </td>
+            <td> <a href="editarCatedra/{$Elementos['id']}">EDITAR</a></td>
           {/if}
         </tr>
   </tbody>
